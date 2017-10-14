@@ -34,4 +34,11 @@ describe('ItemsList', () => {
     const listItem = renderedItem.find('li').find('[value="Remove task"]');
     expect(listItem).toHaveLength(2);
   });
+
+  it('should render a button on every todo list item with the value "Mark as done"', () => {
+    const items = [{ id: 1, content: 'Test 1' }, { id: 2, content: 'Test 2' }];
+    const renderedItem = shallow(<ItemsList {...defaultProps} items={items} />);
+    const listItem = renderedItem.find('li').find('[value="Mark as done"]');
+    expect(listItem).toHaveLength(2);
+  });
 });
