@@ -27,4 +27,11 @@ describe('ItemsList', () => {
     const renderedItem = shallow(<ItemsList {...defaultProps} items={items} />);
     expect(renderedItem.find('li')).toHaveLength(2);
   });
+
+  it('should render a button on every todo list item with the value "Remove task"', () => {
+    const items = [{ id: 1, content: 'Test 1' }, { id: 2, content: 'Test 2' }];
+    const renderedItem = shallow(<ItemsList {...defaultProps} items={items} />);
+    const listItem = renderedItem.find('li').find('[value="Remove task"]');
+    expect(listItem).toHaveLength(2);
+  });
 });
