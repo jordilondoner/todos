@@ -19,6 +19,14 @@ export const ItemsList = ({ items, onRemove }) => {
               onRemove(item.id)
             }}
           />
+          <input
+            className={'itemCreator-button'}
+            type="button"
+            value={'Mark as done'}
+            onClick={() => {
+              console.log('task done!')
+            }}
+          />
         </li>)}
       </ul>
     </div>
