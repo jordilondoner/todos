@@ -41,4 +41,17 @@ describe('reducer', () => {
     expect(result.items).toHaveLength(1);
     expect(result.items[0].id).toEqual(2);
   });
+
+  it('should toggle the value done by on the matching id item TOGGLE_DONE', () => {
+    const state = {
+      items: [
+        { id: 1, content: 'first', done: false },
+        { id: 2, content: 'second', done: false },
+      ]
+    }
+    const mockAction = actions.toggleDone(1);
+    let result = reducer(state, mockAction);
+    expect(result.items[0].id).toEqual(1);
+    expect(result.items[0].done).toBe(true);
+  });
 });
