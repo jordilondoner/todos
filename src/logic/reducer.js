@@ -2,9 +2,9 @@ import * as actions from './constants';
 
 export const initialState = {
   items: [
-    { id: 1, content: 'Call mum' },
-    { id: 2, content: 'Buy cat food' },
-    { id: 3, content: 'Water the plants' },
+    { id: 1, content: 'Call mum', done: false },
+    { id: 2, content: 'Buy cat food', done: false },
+    { id: 3, content: 'Water the plants', done: false },
   ],
 };
 
@@ -16,6 +16,7 @@ const reducer = (state = initialState, action) => {
       const newItem = {
         id: nextId,
         content: action.content,
+        done: false
       };
 
       return {
@@ -28,6 +29,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         items: newItems,
       };
+    case actions.TOGGLE_DONE:
+      return {
+        ...state,
+        items: state.items.map(todo => todo.id === action.content ? {...todo, done: !todo.done} : todo)
+      }
 
     default:
       return state;

@@ -5,3 +5,7 @@
 .itemsList-ul li {
   padding: 5px;
 }
+
+.itemsList-ul li.done{
+  text-decoration: line-through;
+}
