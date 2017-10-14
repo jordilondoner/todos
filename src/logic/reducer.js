@@ -6,6 +6,7 @@ export const initialState = {
     { id: 2, content: 'Buy cat food', done: false },
     { id: 3, content: 'Water the plants', done: false },
   ],
+  showAll: true
 };
 
 const reducer = (state = initialState, action) => {
@@ -33,6 +34,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         items: state.items.map(todo => todo.id === action.content ? {...todo, done: !todo.done} : todo)
+      }
+    case actions.TOGGLE_VISIBILITY_FILTER:
+      return {
+        ...state,
+        showAll: !state.showAll
       }
 
     default:

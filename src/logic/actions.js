@@ -11,3 +11,7 @@ export const removeItem = content => {
 export const toggleDone = content => {
   return { type: actions.TOGGLE_DONE, content };
 };
+
+export const toggleVisibilityFilter = content => {
+  return { type: actions.TOGGLE_VISIBILITY_FILTER };
+};

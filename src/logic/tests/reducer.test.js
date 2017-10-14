@@ -54,4 +54,13 @@ describe('reducer', () => {
     expect(result.items[0].id).toEqual(1);
     expect(result.items[0].done).toBe(true);
   });
+
+  it('should toggle the visibility filter value TOOGLE_VISIBILITY_FILTER', () => {
+    const state = {
+      showAll: true
+    }
+    const mockAction = actions.toggleVisibilityFilter();
+    let result = reducer(state, mockAction);
+    expect(result.showAll).toBe(false);
+  });
 });
