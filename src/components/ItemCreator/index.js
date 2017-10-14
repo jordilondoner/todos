@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addItem } from '../../logic/actions';
+import * as actions from '../../logic/actions';
 import './styles.css';
 
-export const ItemCreator = ({ onAdd }) => {
+export const ItemCreator = ({ onAdd, onToggleMainFilter, showAll, items }) => {
   let inputField;
 
   return (
@@ -29,9 +29,10 @@ export const ItemCreator = ({ onAdd }) => {
       <input
         className={'toggleFilter-button'}
         type="button"
-        value={'Show not completed only'}
+        value={showAll ? 'Show not completed only' : 'Show all'}
+        disabled={!items.filter(i=>i.done).length}
         onClick={() => {
-          console.log('jj')
+          onToggleMainFilter()
         }}
       />
     </div>
@@ -40,10 +41,17 @@ export const ItemCreator = ({ onAdd }) => {
 
 ItemCreator.propTypes = {
   onAdd: PropTypes.func.isRequired,
+  onToggleMainFilter: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => {
+  return { items: state.todos.items, showAll: state.todos.showAll };
 };
 
 const mapDispatchToProps = dispatch => ({
-  onAdd: newItem => dispatch(addItem(newItem)),
+  onAdd: newItem => dispatch(actions.addItem(newItem)),
+  onToggleMainFilter: () => dispatch((actions.toggleVisibilityFilter()))
+
 });
 
-export default connect(null, mapDispatchToProps)(ItemCreator);
+export default connect(mapStateToProps, mapDispatchToProps)(ItemCreator);

@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import * as actions from '../../logic/actions';
 import './styles.css';
 
-export const ItemsList = ({ items, onRemove, toggleDone }) => {
+export const ItemsList = ({ items, onRemove, toggleDone, showAll }) => {
   return (
     <div>
       <ul className={'itemsList-ul'}>
         {items.length < 1 && <p id={'items-missing'}>Add some tasks above.</p>}
-        {items.map(item => <li key={item.id} className={item.done ? 'done' : 'todo'}>
+        {items.map(item => !showAll && item.done ? null :  <li key={item.id} className={item.done ? 'done' : 'todo'}>
           {item.content}
           <input
             className={'itemCreator-button'}
@@ -40,7 +40,7 @@ ItemsList.propTypes = {
 };
 
 const mapStateToProps = state => {
-  return { items: state.todos.items };
+  return { items: state.todos.items, showAll: state.todos.showAll };
 };
 
 const mapDispatchToProps = dispatch => ({
