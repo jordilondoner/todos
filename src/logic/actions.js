@@ -1,5 +1,9 @@
-import { ADD_ITEM } from './constants';
+import * as actions from './constants';
 
 export const addItem = content => {
-  return { type: ADD_ITEM, content };
+  return { type: actions.ADD_ITEM, content };
+};
+
+export const removeItem = content => {
+  return { type: actions.REMOVE_ITEM, content };
 };
