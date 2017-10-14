@@ -19,4 +19,19 @@ However, all the layers of functionality required in the exercise can be accompl
 
 - The way how an arrow function that returns the actual handler function is used in the `ItemsList` component for handling `onClick` events when a parameter is needed does not seem to be the best option to me as later on that function can not be mocked for testing purposes. I would have provably gone for returning the handler which would have had the target available as a parameter anyway and then I would have added the extra info needed (ie. Id) on a `data-attribute`.
 
+# Did
+
+```
+onClick={() => {
+  toggleDone(item.id)
+}}
+```
+
+# Would have done
+
+```
+data-id{item.id}
+onClick={toggleDone} // that implies the target as parameter from which we can get data-id
+```
+
 - I would have worked out a richer UI.
