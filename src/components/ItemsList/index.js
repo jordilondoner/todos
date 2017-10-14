@@ -36,7 +36,8 @@ export const ItemsList = ({ items, onRemove, toggleDone, showAll }) => {
 ItemsList.propTypes = {
   items: PropTypes.array.isRequired,
   onRemove: PropTypes.func.isRequired,
-  toggleDone: PropTypes.func.isRequired
+  toggleDone: PropTypes.func.isRequired,
+  showAll: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => {

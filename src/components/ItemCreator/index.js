@@ -29,11 +29,9 @@ export const ItemCreator = ({ onAdd, onToggleMainFilter, showAll, items }) => {
       <input
         className={'toggleFilter-button'}
         type="button"
-        value={showAll ? 'Show not completed only' : 'Show all'}
+        value={showAll ? 'Show pending tasks only' : 'Show all'}
         disabled={!items.filter(i=>i.done).length}
-        onClick={() => {
-          onToggleMainFilter()
-        }}
+        onClick={onToggleMainFilter}
       />
     </div>
   );
@@ -42,6 +40,8 @@ export const ItemCreator = ({ onAdd, onToggleMainFilter, showAll, items }) => {
 ItemCreator.propTypes = {
   onAdd: PropTypes.func.isRequired,
   onToggleMainFilter: PropTypes.func.isRequired,
+  showAll: PropTypes.bool.isRequired,
+  items: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -51,7 +51,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   onAdd: newItem => dispatch(actions.addItem(newItem)),
   onToggleMainFilter: () => dispatch((actions.toggleVisibilityFilter()))
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemCreator);
