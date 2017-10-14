@@ -31,7 +31,7 @@ describe('ItemCreator', () => {
 
   it('should render a button for toggling the visibility filter', () => {
     const renderedItem = mount(<ItemCreator {...defaultProps} />);
-    const toggle = renderedItem.find('[value="toggleFilter"]');
+    const toggle = renderedItem.find('[value="Show not completed only"]');
     expect(toggle).toHaveLength(1);
   });
 });

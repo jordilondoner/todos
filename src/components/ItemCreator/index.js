@@ -26,6 +26,14 @@ export const ItemCreator = ({ onAdd }) => {
           inputField.value = '';
         }}
       />
+      <input
+        className={'toggleFilter-button'}
+        type="button"
+        value={'Show not completed only'}
+        onClick={() => {
+          console.log('jj')
+        }}
+      />
     </div>
   );
 };
