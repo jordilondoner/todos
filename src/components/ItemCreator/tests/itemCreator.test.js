@@ -28,4 +28,10 @@ describe('ItemCreator', () => {
     renderedItem.find('.itemCreator-button').simulate('click');
     expect(renderedItem.find('.itemCreator-input').node.value).toEqual('');
   });
+
+  it('should render a button for toggling the visibility filter', () => {
+    const renderedItem = mount(<ItemCreator {...defaultProps} />);
+    const toggle = renderedItem.find('[value="toggleFilter"]');
+    expect(toggle).toHaveLength(1);
+  });
 });
