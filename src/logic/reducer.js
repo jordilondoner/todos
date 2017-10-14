@@ -1,4 +1,4 @@
-import { ADD_ITEM } from './constants';
+import * as actions from './constants';
 
 export const initialState = {
   items: [
@@ -10,7 +10,7 @@ export const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_ITEM:
+    case actions.ADD_ITEM:
       const nextId =
         state.items.reduce((id, item) => Math.max(item.id, id), 0) + 1;
       const newItem = {
@@ -22,6 +22,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         items: [...state.items, newItem],
       };
+    case actions.REMOVE_ITEM:
+      const newItems = state.items.filter(i=>i.id !== action.content);
+      return {
+        ...state,
+        items: newItems,
+      };
+
     default:
       return state;
   }

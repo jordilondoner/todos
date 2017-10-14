@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { removeItem } from '../../logic/actions';
 import './styles.css';
 
 export const ItemsList = ({ items, onRemove }) => {
@@ -15,7 +16,7 @@ export const ItemsList = ({ items, onRemove }) => {
             type="button"
             value={'Remove task'}
             onClick={() => {
-              console.log(item.id)
+              onRemove(item.id)
             }}
           />
         </li>)}
@@ -25,11 +26,16 @@ export const ItemsList = ({ items, onRemove }) => {
 };
 
 ItemsList.propTypes = {
-  items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired,
+  onRemove: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return { items: state.todos.items };
 };
 
-export default connect(mapStateToProps)(ItemsList);
+const mapDispatchToProps = dispatch => ({
+  onRemove: id => dispatch(removeItem(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemsList);
